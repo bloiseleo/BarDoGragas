@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.0"
     id("io.spring.dependency-management") version "1.1.6"
+    id("org.flywaydb.flyway") version "9.0.0"
 }
 
 group = "com.bardogragas"
@@ -13,6 +14,12 @@ java {
     }
 }
 
+flyway {
+    url = "jdbc:postgresql://localhost:5432/bardogragas"
+    user = "root"
+    password = "password"
+}
+
 repositories {
     mavenCentral()
 }
@@ -20,6 +27,7 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    runtimeOnly("org.postgresql:postgresql")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

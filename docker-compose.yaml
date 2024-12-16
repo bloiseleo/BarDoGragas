@@ -1,0 +1,9 @@
+services:
+  database:
+    image: postgres
+    environment:
+      POSTGRES_DB: bardogragas
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: root
+    ports:
+      - 5432:5432
