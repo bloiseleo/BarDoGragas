@@ -1,3 +1,5 @@
+import org.flywaydb.gradle.task.FlywayMigrateTask
+
 plugins {
     java
     id("org.springframework.boot") version "3.4.0"
@@ -18,6 +20,7 @@ flyway {
     url = "jdbc:postgresql://localhost:5432/bardogragas"
     user = "root"
     password = "password"
+    locations = arrayOf("classpath:db/migrations")
 }
 
 repositories {
@@ -33,4 +36,8 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.withType(FlywayMigrateTask::class) {
+    dependsOn("build")
 }
